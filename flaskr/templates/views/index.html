@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}Index{% endblock %}</h1>
+<div class="indexdiv">
+  <h2>{% block title %}Index: {% endblock %}</h2>
+  <ul class="indexdivul">
+    <span><li class="indexdivli"><a href="{{ url_for('auth.logout') }}">Log Out</a></li></span>
+    <span><li class="indexdivli"><a href="{{ url_for('auth.register') }}">Register</a></li></span>
+    <span><li class="indexdivli"><a href="{{ url_for('auth.login') }}">Log In</a></li></span>
+    <span><li class="indexdivli"><a href="{{ url_for('auth.login') }}">Log In</a></li></span>
+  </ul>
+</div>  
+  
 {% endblock %}
 
 {% block content %}
-  <h1>Welcome Dev -- thanks!</h1>
+<h3 id="indexmessage">Choose a list.</h3>
 {% endblock %}

@@ -77,7 +77,7 @@ def load_logged_in_user(): # check if session user id exists in db user table ea
 @bp.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('index')) # redirect to entry view after logout
+    return redirect(url_for('auth.login')) # redirect to login view after logout
 
 def login_required(view): # verify if session is valid
     @functools.wraps(view)

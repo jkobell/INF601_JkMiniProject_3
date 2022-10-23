@@ -25,32 +25,60 @@ html {
     border-top: 1px solid lightgray;
   }
   
-  nav {
+  .mainnav {
     background: lightgray;
     display: flex;
     align-items: center;
     padding: 0 0.5rem;
   }
   
-  nav h1 {
+  .mainnav h1 {
     flex: auto;
     margin: 0;
   }
   
-  nav h1 a {
+  .mainnav h1 a {
     text-decoration: none;
     padding: 0.25rem 0.5rem;
   }
   
-  nav ul  {
+  .mainnav ul  {
     display: flex;
     list-style: none;
     margin: 0;
     padding: 0;
   }
   
-  nav ul li a, nav ul li span, header .action {
+  .mainnav ul li a, .mainnav ul li span, header .action {
     display: block;
+    padding: 0.5rem;
+  }
+
+  .indexdiv {
+    display:flex;
+    align-items: center;
+    width: 100%;
+    background: rgb(234, 239, 241);
+    padding:0.3rem
+  }
+
+  .indexdivul {
+    list-style: none;
+    display:inline-flex;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+
+  .indexdivli {
+    background:lavender;
+    padding: 0.3rem;
+  }
+
+  #indexmessage {
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-size:2rem;
     padding: 0.5rem;
   }
   
