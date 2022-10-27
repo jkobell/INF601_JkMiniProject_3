@@ -38,4 +38,7 @@ def create_app(test_config=None):
     from . import views
     app.register_blueprint(views.bp)
 
+    """ from . import buildingsupply
+    app.register_blueprint(buildingsupply.bp) """
+
     return app

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}New List{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="project">Project</label>
+    <input name="project" id="project" value="{{ request.form['project'] }}" required>
+    <label for="items_text">Items</label>
+    <textarea name="items_text" id="items_text">{{ request.form['items_text'] }}</textarea>
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}

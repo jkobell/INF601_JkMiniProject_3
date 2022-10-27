@@ -4,10 +4,10 @@
 <div class="indexdiv">
   <h2>{% block title %}Index: {% endblock %}</h2>
   <ul class="indexdivul">
-    <span><li class="indexdivli"><a href="{{ url_for('auth.logout') }}">Log Out</a></li></span>
-    <span><li class="indexdivli"><a href="{{ url_for('auth.register') }}">Register</a></li></span>
-    <span><li class="indexdivli"><a href="{{ url_for('auth.login') }}">Log In</a></li></span>
-    <span><li class="indexdivli"><a href="{{ url_for('auth.login') }}">Log In</a></li></span>
+    <span><li class="indexdivli"><a href="{{ url_for('views.buildingsupply') }}">Building Supply</a></li></span>
+    <span><li class="indexdivli"><a href="{{ url_for('views.grocery') }}">Grocery</a></li></span>
+    <span><li class="indexdivli"><a href="{{ url_for('views.household') }}">Household</a></li></span>
+    <span><li class="indexdivli"><a href="{{ url_for('views.vehicle') }}">Vehicle</a></li></span>
   </ul>
 </div>  
   

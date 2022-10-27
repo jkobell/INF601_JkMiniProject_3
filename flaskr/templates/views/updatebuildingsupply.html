@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Edit "{{ post['project'] }}"{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="project">Project</label>
+    <input name="project" id="project"
+      value="{{ request.form['project'] or post['project'] }}" required>
+    <label for="items_text">Items</label>
+    <textarea name="items_text" id="items_text">{{ request.form['items_text'] or post['items_text'] }}</textarea>
+    <input type="submit" value="Save">
+  </form>
+  <hr>
+  <form action="{{ url_for('views.deletebuildingsupply', id=post['id']) }}" method="post">
+    <input class="danger" type="submit" value="Delete" onclick="return confirm('Are you sure?');">
+  </form>
+{% endblock %}
