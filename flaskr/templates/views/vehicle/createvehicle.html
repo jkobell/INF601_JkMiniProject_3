@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h2 class="ms-5 bg-light pt-2 pb-2">{% block title %}New List{% endblock %}</h2>
+{% endblock %}
+
+{% block content %}
+<div class="col-md-4 ms-5">
+  <form method="post">
+    <div class="mb-2">
+      <label class="fw-bold fs-5" for="make_model">Make - Model</label>
+    </div>
+    <div class="mb-3 form-group">
+      <input type="text" class="form-control form-control-md" name="make_model" id="make_model" value="{{ request.form['make_model'] }}" required>
+    </div>
+    <div class="mb-2">
+      <label class="fw-bold fs-5" for="items_text">Items</label>
+    </div>
+    <div class="mb-3 form-group">
+      <textarea type="text" class="form-control form-control-md" name="items_text" id="items_text" rows="5">{{ request.form['items_text'] }}</textarea>
+    </div>
+    <div class="mb-4">
+      <button type="submit" class="btn btn-success opacity-75">
+        Save
+      </button>
+    </div>
+  </form>
+</div>
+  
+{% endblock %}

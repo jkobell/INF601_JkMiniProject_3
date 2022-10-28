@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h2 class="ms-5 bg-light pt-2 pb-2">{% block title %}Edit "{{ post['category'] }}"{% endblock %}</h2>
+{% endblock %}
+
+{% block content %}
+<div class="col-md-4 ms-5">
+  <form method="post">
+    <div class="mb-2">
+      <label class="fw-bold fs-5" for="category">Category</label>
+    </div>
+    <div class="mb-3 form-group">
+      <input type="text" class="form-control form-control-md" name="category" id="category" value="{{ request.form['category'] or post['category'] }}" required>
+    </div>
+    <div class="mb-2">
+      <label class="fw-bold fs-5" for="items_text">Items</label>
+    </div>
+    <div class="mb-3 form-group">
+      <textarea type="text" class="form-control form-control-md" name="items_text" id="items_text" rows="5">{{ request.form['items_text'] or post['items_text'] }}</textarea>
+    </div>
+    <div class="mb-4">
+      <button type="submit" class="btn btn-success opacity-75">
+        Save
+      </button>
+    </div>
+  </form>
+</div>
+  <hr>
+  <div class="ms-5">
+    <button type="button" class="btn btn-warning opacity-75" data-bs-toggle="modal" data-bs-target="#deleteModal">
+      Delete
+    </button>
+  </div>
+  
+  <!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteModal">DELETE WARNING!</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h3>Permanently delete list?</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <div class="ms-5">
+          <form action="{{ url_for('home.deletehome', id=post['id']) }}" method="post">
+            <button class="btn btn-danger" type="submit">Delete list</button>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

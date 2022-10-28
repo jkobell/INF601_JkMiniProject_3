@@ -44,4 +44,10 @@ def create_app(test_config=None):
     from .bp_views import grocery
     app.register_blueprint(grocery.bp, url_prefix='/bp_views')
 
+    from .bp_views import home
+    app.register_blueprint(home.bp, url_prefix='/bp_views')
+
+    from .bp_views import vehicle
+    app.register_blueprint(vehicle.bp, url_prefix='/bp_views')
+
     return app
