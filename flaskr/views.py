@@ -30,7 +30,7 @@ def buildingsupply():
         ' ORDER BY created DESC'
     ).fetchall()
     #? check session
-    return render_template('views/buildingsupply.html', posts=posts, tablename = 'BUILDING SUPPLY')
+    return render_template('views/buildingsupply/buildingsupply.html', posts=posts, tablename = 'BUILDING SUPPLY')
 
 @bp.route('/createbuildingsupply', methods=('GET', 'POST'))
 @login_required

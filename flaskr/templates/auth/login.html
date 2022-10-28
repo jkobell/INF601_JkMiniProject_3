@@ -5,24 +5,17 @@
 {% endblock %}
 
 {% block content %}
-<div class="container login-container">
-  <div class="row">
-      <div class="col-md-4 login-form-3">
-          <form>
+      <div class="col-md-4 ms-5">
+          <form method="post">
               <div class="form-group mb-3">
-                  <input type="text" class="form-control form-control-lg" placeholder="Username" value="" />
+                  <input type="text" class="form-control form-control-lg" name="username" id="username" placeholder="Username" required/>
               </div>
               <div class="form-group mb-3">
-                  <input type="password" class="form-control form-control-lg" placeholder="Password" value="" />
+                  <input type="password" class="form-control form-control-lg" name="password" id="password" placeholder="Password" required/>
               </div>
               <div class="form-group mb-3">
                   <input type="submit" class="btnSubmit ps-4 pe-4" value="Login" />
-              </div>
-              <div class="form-group">
-                  <a href="#" class="ForgetPwd">Forget Password?</a>
-              </div>
+              </div>              
           </form>
       </div>
-  </div>
-</div>
 {% endblock %}
