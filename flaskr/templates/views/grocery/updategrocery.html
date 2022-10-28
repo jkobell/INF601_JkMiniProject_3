@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h2 class="ms-5 bg-light pt-2 pb-2">{% block title %}Edit "{{ post['project'] }}"{% endblock %}</h2>
+  <h2 class="ms-5 bg-light pt-2 pb-2">{% block title %}Edit "{{ post['category'] }}"{% endblock %}</h2>
 {% endblock %}
 
 {% block content %}
 <div class="col-md-4 ms-5">
   <form method="post">
     <div class="mb-2">
-      <label class="fw-bold fs-5" for="project">Project</label>
+      <label class="fw-bold fs-5" for="category">Category</label>
     </div>
     <div class="mb-3 form-group">
-      <input type="text" class="form-control form-control-md" name="project" id="project" value="{{ request.form['project'] or post['project'] }}" required>
+      <input type="text" class="form-control form-control-md" name="category" id="category" value="{{ request.form['category'] or post['category'] }}" required>
     </div>
     <div class="mb-2">
       <label class="fw-bold fs-5" for="items_text">Items</label>
@@ -47,7 +47,7 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
         <div class="ms-5">
-          <form action="{{ url_for('buildingsupply.deletebuildingsupply', id=post['id']) }}" method="post">
+          <form action="{{ url_for('grocery.deletegrocery', id=post['id']) }}" method="post">
             <button class="btn btn-danger" type="submit">Delete list</button>
           </form>
         </div>
@@ -55,4 +55,3 @@
   </div>
 </div>
 {% endblock %}
-

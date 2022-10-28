@@ -38,7 +38,10 @@ def create_app(test_config=None):
     from . import views
     app.register_blueprint(views.bp)
 
-    """ from . import buildingsupply
-    app.register_blueprint(buildingsupply.bp) """
+    from .bp_views import buildingsupply
+    app.register_blueprint(buildingsupply.bp, url_prefix='/bp_views')
+
+    from .bp_views import grocery
+    app.register_blueprint(grocery.bp, url_prefix='/bp_views')
 
     return app

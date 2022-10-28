@@ -1,22 +1,11 @@
 {% extends 'base.html' %}
 
 {% block header %}
-<nav class="navbar navbar-expand-sm bg-light">
-  <h3 class="ms-2">{% block title %}Index: {% endblock %}</h3>
-  <div class="nav container-fluid justify-content-center"> 
-    <ul class="nav">
-      <li class="nav-item"><a class="nav-link" href="{{ url_for('views.buildingsupply') }}">Building Supply</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{ url_for('views.grocery') }}">Grocery</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{ url_for('views.household') }}">Household</a></li>
-      <li class="nav-item"><a class="nav-link" href="{{ url_for('views.vehicle') }}">Vehicle</a></li>
-    </ul>
-  </div> 
-</nav>  
-  
+
 {% endblock %}
 
 {% block content %}
-<div class="bg-dark text-center">
+<div class="bg-dark text-center opacity-50">
   <h3 class="text-white p-2">Choose a list.</h3>
 </div>
 {% endblock %}
