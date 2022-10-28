@@ -1,12 +1,10 @@
 # INF601 - Advanced Programming in Python
 # James Kobell
 # Mini Project 3
-import functools
 
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
+    Blueprint, flash, g, redirect, render_template, request, url_for
 )
-from werkzeug.security import check_password_hash, generate_password_hash
 
 from flaskr.db import get_db
 
@@ -14,8 +12,9 @@ from werkzeug.exceptions import abort
 
 from flaskr.auth import login_required
 
+#create blueprint object with parameters
 bp = Blueprint('buildingsupply', __name__, url_prefix='/views/buildingsupply')
-
+# read view rendered from db SELECT results
 @bp.route('/buildingsupply')
 def buildingsupply():
     db = get_db()
@@ -24,9 +23,8 @@ def buildingsupply():
         ' FROM building_supply p JOIN user u ON p.author_id = u.id'
         ' ORDER BY created DESC'
     ).fetchall()
-    #? check session
     return render_template('/views/buildingsupply/buildingsupply.html', posts=posts, tablename = 'BUILDING SUPPLY')
-
+# create view - INSERT to db
 @bp.route('/createbuildingsupply', methods=('GET', 'POST'))
 @login_required
 def createbuildingsupply():
@@ -51,7 +49,7 @@ def createbuildingsupply():
             return redirect(url_for('buildingsupply.buildingsupply'))
 
     return render_template('views/buildingsupply/createbuildingsupply.html')
-
+# SELECT only 1 record from db for edit or delete
 def get_postbuildingsupply(id, check_author=True):
     post = get_db().execute(
         'SELECT p.id, project, items_text, created, author_id, username'
@@ -67,9 +65,9 @@ def get_postbuildingsupply(id, check_author=True):
         abort(403)
 
     return post
-
+# UPDATE single record
 @bp.route('/<int:id>/updatebuildingsupply', methods=('GET', 'POST'))
-@login_required
+@login_required # check if user is logged in
 def updatebuildingsupply(id):
     post = get_postbuildingsupply(id)
 
@@ -94,7 +92,7 @@ def updatebuildingsupply(id):
             return redirect(url_for('buildingsupply.buildingsupply'))
 
     return render_template('views/buildingsupply/updatebuildingsupply.html', post=post)
-
+# DELETE single record from db
 @bp.route('/<int:id>/deletebuildingsupply', methods=('POST',))
 @login_required
 def deletebuildingsupply(id):

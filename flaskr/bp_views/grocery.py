@@ -1,12 +1,9 @@
 # INF601 - Advanced Programming in Python
 # James Kobell
 # Mini Project 3
-import functools
-
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
+    Blueprint, flash, g, redirect, render_template, request, url_for
 )
-from werkzeug.security import check_password_hash, generate_password_hash
 
 from flaskr.db import get_db
 
@@ -14,8 +11,9 @@ from werkzeug.exceptions import abort
 
 from flaskr.auth import login_required
 
+#create blueprint object with parameters
 bp = Blueprint('grocery', __name__, url_prefix='/views/grocery')
-
+# read view rendered from db SELECT results
 @bp.route('/grocery')
 def grocery():
     db = get_db()
@@ -24,9 +22,8 @@ def grocery():
         ' FROM grocery p JOIN user u ON p.author_id = u.id'
         ' ORDER BY created DESC'
     ).fetchall()
-    #? check session
-    return render_template('/views/grocery/grocery.html', posts=posts, tablename = 'Grocery')
-
+    return render_template('/views/grocery/grocery.html', posts=posts, tablename = 'GROCERY')
+# create view - INSERT to db
 @bp.route('/creategrocery', methods=('GET', 'POST'))
 @login_required
 def creategrocery():
@@ -51,7 +48,7 @@ def creategrocery():
             return redirect(url_for('grocery.grocery'))
 
     return render_template('views/grocery/creategrocery.html')
-
+# SELECT only 1 record from db for edit or delete
 def get_postgrocery(id, check_author=True):
     post = get_db().execute(
         'SELECT p.id, category, items_text, created, author_id, username'
@@ -67,9 +64,9 @@ def get_postgrocery(id, check_author=True):
         abort(403)
 
     return post
-
+# UPDATE single record
 @bp.route('/<int:id>/updategrocery', methods=('GET', 'POST'))
-@login_required
+@login_required # check if user is logged in
 def updategrocery(id):
     post = get_postgrocery(id)
 
@@ -94,7 +91,7 @@ def updategrocery(id):
             return redirect(url_for('grocery.grocery'))
 
     return render_template('views/grocery/updategrocery.html', post=post)
-
+# DELETE single record from db
 @bp.route('/<int:id>/deletegrocery', methods=('POST',))
 @login_required
 def deletegrocery(id):

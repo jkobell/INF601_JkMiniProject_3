@@ -12,8 +12,9 @@ from werkzeug.exceptions import abort
 
 from flaskr.auth import login_required
 
+#create blueprint object with parameters
 bp = Blueprint('vehicle', __name__, url_prefix='/views/vehicle')
-
+# read view rendered from db SELECT results
 @bp.route('/vehicle')
 def vehicle():
     db = get_db()
@@ -22,9 +23,9 @@ def vehicle():
         ' FROM vehicle p JOIN user u ON p.author_id = u.id'
         ' ORDER BY created DESC'
     ).fetchall()
-    #? check session
-    return render_template('/views/vehicle/vehicle.html', posts=posts, tablename = 'Vehicle')
+    return render_template('/views/vehicle/vehicle.html', posts=posts, tablename = 'VEHICLE')
 
+# create view - INSERT to db
 @bp.route('/createvehicle', methods=('GET', 'POST'))
 @login_required
 def createvehicle():
@@ -49,7 +50,7 @@ def createvehicle():
             return redirect(url_for('vehicle.vehicle'))
 
     return render_template('views/vehicle/createvehicle.html')
-
+# SELECT only 1 record from db for edit or delete
 def get_postvehicle(id, check_author=True):
     post = get_db().execute(
         'SELECT p.id, make_model, items_text, created, author_id, username'
@@ -65,9 +66,9 @@ def get_postvehicle(id, check_author=True):
         abort(403)
 
     return post
-
+# UPDATE single record
 @bp.route('/<int:id>/updatevehicle', methods=('GET', 'POST'))
-@login_required
+@login_required # check if user is logged in
 def updatevehicle(id):
     post = get_postvehicle(id)
 
@@ -92,7 +93,7 @@ def updatevehicle(id):
             return redirect(url_for('vehicle.vehicle'))
 
     return render_template('views/vehicle/updatevehicle.html', post=post)
-
+# DELETE single record from db
 @bp.route('/<int:id>/deletevehicle', methods=('POST',))
 @login_required
 def deletevehicle(id):

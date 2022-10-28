@@ -23,15 +23,11 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
-
-    # dev only page -- remove
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
-    
+        
     from . import db
     db.init_app(app)
 
+    # register all blueprints *.py files
     from . import auth
     app.register_blueprint(auth.bp)
 

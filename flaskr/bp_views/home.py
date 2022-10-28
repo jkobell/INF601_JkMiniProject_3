@@ -12,8 +12,9 @@ from werkzeug.exceptions import abort
 
 from flaskr.auth import login_required
 
+#create blueprint object with parameters
 bp = Blueprint('home', __name__, url_prefix='/views/home')
-
+# read view rendered from db SELECT results
 @bp.route('/home')
 def home():
     db = get_db()
@@ -22,9 +23,8 @@ def home():
         ' FROM home p JOIN user u ON p.author_id = u.id'
         ' ORDER BY created DESC'
     ).fetchall()
-    #? check session
-    return render_template('/views/home/home.html', posts=posts, tablename = 'Household')
-
+    return render_template('/views/home/home.html', posts=posts, tablename = 'HOUSEHOLD')
+# create view - INSERT to db
 @bp.route('/createhome', methods=('GET', 'POST'))
 @login_required
 def createhome():
@@ -49,7 +49,7 @@ def createhome():
             return redirect(url_for('home.home'))
 
     return render_template('views/home/createhome.html')
-
+# SELECT only 1 record from db for edit or delete
 def get_posthome(id, check_author=True):
     post = get_db().execute(
         'SELECT p.id, category, items_text, created, author_id, username'
@@ -65,9 +65,9 @@ def get_posthome(id, check_author=True):
         abort(403)
 
     return post
-
+# UPDATE single record
 @bp.route('/<int:id>/updatehome', methods=('GET', 'POST'))
-@login_required
+@login_required # check if user is logged in
 def updatehome(id):
     post = get_posthome(id)
 
@@ -92,7 +92,7 @@ def updatehome(id):
             return redirect(url_for('home.home'))
 
     return render_template('views/home/updatehome.html', post=post)
-
+# DELETE single record from db
 @bp.route('/<int:id>/deletehome', methods=('POST',))
 @login_required
 def deletehome(id):
