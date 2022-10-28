@@ -1,25 +1,31 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  <h1>{% block title %}{{tablename}} LISTS{% endblock %}</h1>
+<nav class="navbar navbar-expand-sm bg-light border-bottom">
+  <h2 class="ms-5 text-nowrap">{% block title %}{{tablename}} LISTS{% endblock %}</h2>
+  <div class="nav container-fluid justify-content-end"> 
   {% if g.user %}
     <a class="action" href="{{ url_for('views.createbuildingsupply') }}">New</a>
   {% endif %}
+  </div>
+</nav>  
 {% endblock %}
 
 {% block content %}
   {% for post in posts %}
-    <article class="post">
-      <header>
+    <article class="ms-5">
+      <nav class="navbar navbar-expand-sm">
         <div>
-          <h1>{{ post['project'] }}</h1>
-          <div class="about">by {{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
+          <h3 class="text-info">{{ post['project'] }}</h3>
+          <div class="about fst-italic text-nowrap">by {{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
         </div>
-        {% if g.user['id'] == post['author_id'] %}
+        <div class="nav container-fluid justify-content-end">
+          {% if g.user['id'] == post['author_id'] %}
           <a class="action" href="{{ url_for('views.updatebuildingsupply', id=post['id']) }}">Edit</a>
         {% endif %}
-      </header>
-      <p class="body">{{ post['items_text'] }}</p>
+        </div>       
+      </nav>
+      <div style="white-space: pre-wrap;">{{ post['items_text'] }}</div>
     </article>
     {% if not loop.last %}
       <hr>
