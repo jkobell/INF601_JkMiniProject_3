@@ -3,7 +3,7 @@ James Kobell |
  Mini Project 3
  
  ### Project
- Mini Project 3 is a Python Flask project for creating and managing commonly used lists. Lists are created from Blueprints and rendered from templates. Project includes lists for Building Supply, Grocery, Household and Vehicle. A Modal is displayed as a delete warning. Registration and Login is required.
+ Mini Project 3 is a Python Flask project for creating and managing commonly used lists. Lists are created from Blueprints and rendered from templates. Project includes lists for Building Supply, Grocery, Household and Vehicle. A Modal is displayed as a delete warning. Registration and Login is required. Styles are Bootstrap 5.
 
 ### Interpreter
 Python 3.10.6
